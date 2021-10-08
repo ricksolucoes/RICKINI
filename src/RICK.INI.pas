@@ -49,18 +49,39 @@ implementation
 function TRICKIni.ADD(const AValue: String): iRICKIni;
 begin
   Result:= Self;
+
+  if FSection.Trim.IsEmpty then
+    raise Exception.Create('Inform the Section');
+
+  if FIdentify.Trim.IsEmpty then
+    raise Exception.Create('Inform the Identify');
+
   FIniFile.WriteString(FSection, FIdentify, AValue);
 end;
 
 function TRICKIni.ADD(const AValue: Boolean): iRICKIni;
 begin
   Result:= Self;
+
+  if FSection.Trim.IsEmpty then
+    raise Exception.Create('Inform the Section');
+
+  if FIdentify.Trim.IsEmpty then
+    raise Exception.Create('Inform the Identify');
+
   FIniFile.WriteBool(FSection, FIdentify, AValue);
 end;
 
 function TRICKIni.ADD(const AValue: Integer): iRICKIni;
 begin
   Result:= Self;
+
+  if FSection.Trim.IsEmpty then
+    raise Exception.Create('Inform the Section');
+
+  if FIdentify.Trim.IsEmpty then
+    raise Exception.Create('Inform the Identify');
+
   FIniFile.WriteInteger(FSection, FIdentify, AValue);
 end;
 
@@ -81,10 +102,10 @@ end;
 function TRICKIni.ExecuteFileINI: iRICKIni;
 begin
   Result:= Self;
-  if FFileName.Trim.Empty.IsEmpty then
-    raise Exception.Create('Informe o Nome do Arquivo');
+  if FFileName.Trim.IsEmpty then
+    raise Exception.Create('Inform the file name');
   if FFilePath.Trim.IsEmpty then
-    raise Exception.Create('Informe a pasta do arquivo');
+    raise Exception.Create('Inform the file folder');
 
   FIniFile:= TIniFile.Create(Format('%s%s', [FFilePath, FFileName]));
 end;
@@ -109,14 +130,14 @@ begin
   FFilePath:= AValue;
 
   if not (Copy(FFilePath,length(FFilePath),1) = '\') then
-    FFilePath:= Format('s%\', [FFilePath]);
+    FFilePath:= Format('%s\', [FFilePath]);
 
 end;
 
 function TRICKIni.Identify(const AValue: String): iRICKIni;
 begin
   Result:= Self;
-  FSection:= AValue;
+  FIdentify:= AValue;
 end;
 
 class function TRICKIni.New: iRICKIni;
@@ -126,31 +147,73 @@ end;
 
 function TRICKIni.Read(AValue: Boolean): Boolean;
 begin
+
+  if FSection.Trim.IsEmpty then
+    raise Exception.Create('Inform the Section');
+
+  if FIdentify.Trim.IsEmpty then
+    raise Exception.Create('Inform the Identify');
+
   Result:= FIniFile.ReadBool(FSection, FIdentify, AValue);
 end;
 
 function TRICKIni.Read(AValue: Integer): Integer;
 begin
+
+  if FSection.Trim.IsEmpty then
+    raise Exception.Create('Inform the Section');
+
+  if FIdentify.Trim.IsEmpty then
+    raise Exception.Create('Inform the Identify');
+
   Result:= FIniFile.ReadInteger(FSection, FIdentify, AValue);
 end;
 
 function TRICKIni.Read(AValue: String): String;
 begin
+
+  if FSection.Trim.IsEmpty then
+    raise Exception.Create('Inform the Section');
+
+  if FIdentify.Trim.IsEmpty then
+    raise Exception.Create('Inform the Identify');
+
   Result:= FIniFile.ReadString(FSection, FIdentify, AValue);
 end;
 
 function TRICKIni.Read(AValue: Double): Double;
 begin
+
+  if FSection.Trim.IsEmpty then
+    raise Exception.Create('Inform the Section');
+
+  if FIdentify.Trim.IsEmpty then
+    raise Exception.Create('Inform the Identify');
+
   Result:= FIniFile.ReadFloat(FSection, FIdentify, AValue);
 end;
 
 function TRICKIni.Read(AValue: TDateTime): TDateTime;
 begin
+
+  if FSection.Trim.IsEmpty then
+    raise Exception.Create('Inform the Section');
+
+  if FIdentify.Trim.IsEmpty then
+    raise Exception.Create('Inform the Identify');
+
   Result:= FIniFile.ReadDateTime(FSection, FIdentify, AValue);
 end;
 
 function TRICKIni.Read(AValue: TStream): Integer;
 begin
+
+  if FSection.Trim.IsEmpty then
+    raise Exception.Create('Inform the Section');
+
+  if FIdentify.Trim.IsEmpty then
+    raise Exception.Create('Inform the Identify');
+
   Result:= FIniFile.ReadBinaryStream(FSection, FIdentify, AValue);
 end;
 
@@ -163,18 +226,39 @@ end;
 function TRICKIni.ADD(const AValue: TStream): iRICKIni;
 begin
   Result:= Self;
+
+  if FSection.Trim.IsEmpty then
+    raise Exception.Create('Inform the Section');
+
+  if FIdentify.Trim.IsEmpty then
+    raise Exception.Create('Inform the Identify');
+
   FIniFile.WriteBinaryStream(FSection, FIdentify, AValue);
 end;
 
 function TRICKIni.ADD(const AValue: Double): iRICKIni;
 begin
   Result:= Self;
+
+  if FSection.Trim.IsEmpty then
+    raise Exception.Create('Inform the Section');
+
+  if FIdentify.Trim.IsEmpty then
+    raise Exception.Create('Inform the Identify');
+
   FIniFile.WriteFloat(FSection, FIdentify, AValue);
 end;
 
 function TRICKIni.ADD(const AValue: TDateTime): iRICKIni;
 begin
   Result:= Self;
+
+  if FSection.Trim.IsEmpty then
+    raise Exception.Create('Inform the Section');
+
+  if FIdentify.Trim.IsEmpty then
+    raise Exception.Create('Inform the Identify');
+
   FIniFile.WriteDateTime(FSection, FIdentify, AValue);
 end;
 
