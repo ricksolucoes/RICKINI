@@ -1,0 +1,9 @@
+{
+	"name": "RICKINI",
+	"description": "Framework for handling INI files",
+	"version": "1.0.1",
+	"homepage": "",
+	"mainsrc": "./src",
+	"projects": [],
+	"dependencies": {}
+}
