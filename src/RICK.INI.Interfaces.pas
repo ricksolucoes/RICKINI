@@ -17,14 +17,13 @@ type
     function ADD(const AValue: Boolean): iRICKINI; overload;
     function ADD(const AValue: TStream): iRICKINI; overload;
     function ADD(const AValue: TDateTime): iRICKINI; overload;
-    function ADD(const AValue: Double): iRICKINI; overload;
+    function ADD(const AValue: Extended): iRICKINI; overload;
     function Read(AValue: String = ''): String; overload;
     function Read(AValue: Integer = 0): Integer; overload;
     function Read(AValue: Boolean = False): Boolean; overload;
     function Read(AValue: TStream = nil): Integer; overload;
     function Read(AValue: TDateTime): TDateTime; overload;
-    function Read(AValue: Double = 0): Double; overload;
-    function CloseINI: iRICKINI;
+    function Read(AValue: Extended = 0.00): Extended; overload;
   end;
 
 implementation
