@@ -83,11 +83,16 @@ end;
 function TRICKIni.ExecuteFileINI: iRICKIni;
 begin
   Result:= Self;
+  if not (FFileName.Trim.IsEmpty and FFilePath.Trim.IsEmpty) then
+  begin
+    FIniFile:= TIniFile.Create(Format('%s%s', [FFilePath, FFileName]));
+    Exit;
+  end;
+
   if FFileName.Trim.IsEmpty then
-    raise Exception.Create('Inform the file name');
-  if FFilePath.Trim.IsEmpty then
-    raise Exception.Create('Inform the file folder');
-  FIniFile:= TIniFile.Create(Format('%s%s', [FFilePath, FFileName]));
+    raise Exception.Create('Inform the file Name');
+
+  FIniFile := TIniFile.Create(FFileName);
 end;
 
 destructor TRICKIni.Destroy;
