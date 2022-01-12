@@ -3,6 +3,10 @@ unit RICK.INI;
 interface
 
 uses
+{$IFNDEF MSWINDOWS}
+  System.IOUtils,
+{$ENDIF}
+
   System.Classes,
   System.INIFiles,
   RICK.INI.Interfaces;
@@ -83,7 +87,7 @@ end;
 function TRICKIni.ExecuteFileINI: iRICKIni;
 begin
   Result:= Self;
-  if not (FFileName.Trim.IsEmpty and FFilePath.Trim.IsEmpty) then
+  if (not (FFileName.Trim.IsEmpty)) and (Not(FFilePath.Trim.IsEmpty)) then
   begin
     FIniFile:= TIniFile.Create(Format('%s%s', [FFilePath, FFileName]));
     Exit;
@@ -92,7 +96,11 @@ begin
   if FFileName.Trim.IsEmpty then
     raise Exception.Create('Inform the file Name');
 
-  FIniFile := TIniFile.Create(FFileName);
+{$IFDEF MSWINDOWS}
+  FIniFile  := TIniFile.Create(ExtractFilePath(ParamStr(0)) + FFileName);
+{$ELSE}
+  FIniFile  := TIniFile.Create(TPath.Combine(TPath.GetDocumentsPath, FFileName));
+{$ENDIF}
 end;
 
 destructor TRICKIni.Destroy;
